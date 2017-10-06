@@ -1,0 +1,43 @@
+  <% if @admin_menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+      <% @admin_menu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="col-lg-6">
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description  ,class: 'form-control',  placeholder: 'Description' %>
+    </div>
+</div>
+<div class="col-lg-6">
+  <div class="form-group">
+    <%= f.label :image %><br>
+    <%= f.file_field "attachment[extra][file]", :class=>"form-control", :required => f.object.attachment.blank? %>
+    <%= f.hidden_field "attachment[extra][parent_id]", value: @admin_menu.id %>
+    <%= f.hidden_field "attachment[extra][role]", value: "extra" %>
+  </div>
+  <% if @admin_menu.extra.present? %>
+
+        <% if @admin_menu.extra.present? and @admin_menu.extra.file_type == 'application/pdf' %>
+          <iframe src="<%= @admin_menu.extra.file.url %>" style="width:50%; height:100px;" frameborder="0"></iframe>
+        <% elsif @admin_menu.extra.present? %>
+            <img src="<%= @admin_menu.medium %>">
+        <% end %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to("", admin_attachment_path(@admin_menu.attachment.token), class: "fa fa-trash fa-lg", method: :delete, data: { confirm: "Are you sure you wish to remove this attachment?" }) %>
+        <%else%>
+        <img src="/assets/default.gif" width="250px" height="170px">
+   <%end%>
+</div>
+
+<div class="col-lg-6">
+  <%= link_to 'Back', admin_bar_menu_path(@admin_menu.bar, @admin_menu), :class=> "btn btn-default " %>
+  <button type="reset" class="btn btn-primary ">Reset</button>
+  <button type="submit" class="btn btn-success ">Submit</button>
+</div>

@@ -1,0 +1,62 @@
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Users</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Users Table
+          <%= link_to 'New User', new_admin_user_path, :class=>"btn btn-primary btn-sm pull-right adjust_bottom" %>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <table width="100%" class="table table-striped table-bordered table-hover" id="users_table">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% User.find_each do |admin_user| %>
+              <tr class="odd gradeX">
+                <td><%= admin_user.first_name %></td>
+                <td><%= admin_user.last_name %></td>
+                <td><%= link_to admin_user.email, admin_user_path(admin_user) %></td>
+                <td>
+                  <% if admin_user.role.present? %>
+                    <%= admin_user.role %>
+                  <% else %>
+                    User
+                  <% end %>
+                </td>
+                <td>
+                <%= link_to 'Edit', edit_admin_user_path(admin_user), :class=>"btn btn-primary btn-sm" %>
+                <%= link_to 'Delete', admin_user_path(admin_user), method: :delete, data: { confirm: 'Are you sure?' }, :class=>"btn btn-danger btn-sm" unless admin_user.role == 'Super Admin' %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('#users_table').DataTable({
+          responsive: true
+      });
+  });
+</script>

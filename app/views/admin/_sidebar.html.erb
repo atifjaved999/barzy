@@ -1,0 +1,31 @@
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+    <ul class="nav" id="side-menu">
+      <li>
+        <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+      </li>
+      <% if current_user.is?('Super Admin') %>
+        <li>
+          <a href="<%= admin_categories_path %>"><i class="fa fa-th fa-fw fa-fw"></i> Categories</a>
+        </li>
+        <li>
+          <a href="<%= admin_bars_path %>"><i class="fa fa-cutlery fa-fw"></i> Bars</a>
+        </li>
+        <li>
+          <a href="<%= admin_users_path %>"><i class="fa fa-users fa-fw"></i> Users</a>
+        </li>
+        <li>
+          <a href="<%= admin_need_helps_path %>"><i class="fa fa-question-circle fa-fw"></i> Need Helps</a>
+        </li>
+      <% elsif current_user.is?('Admin') %>
+        <% current_user.bars.each do |bar| %>
+          <li>
+            <a href="<%= admin_bar_path(bar) %>"><i class="fa fa-th fa-fw"></i> <%= bar.name %></a>
+          </li>
+        <% end %>
+      <% end %>
+
+    </ul>
+  </div>
+  <!-- /.sidebar-collapse -->
+</div>

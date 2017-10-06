@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Barzy</title>
+  <%= javascript_include_tag 'admin' %>
+  <%= stylesheet_link_tag    'admin', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if user_signed_in? %>
+  <div id="wrapper">
+    <!-- Navigation -->
+    <%= render "layouts/navigation" %>
+      <!-- Page Content -->
+      <div id="page-wrapper">
+          <%= render "layouts/flash_messages" %>
+          <%= yield %>
+      </div>
+  </div>
+<% else %>
+  <%= yield %>
+<% end %>
+
+</body>
+</html>

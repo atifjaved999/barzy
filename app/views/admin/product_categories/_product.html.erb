@@ -1,0 +1,42 @@
+<h3>Products</h3><br>
+<div id="product_div" class="row">
+  <%=f.fields_for :products do |pro| %>
+
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <div class="form-group">    
+            <label class="control-label">Name</label>
+            <%= pro.text_field :name  ,class: 'form-control',  placeholder: 'Name', :required=> true %>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="control-label">Price</label>
+            <%= pro.number_field :price  ,class: 'form-control',  placeholder: 'Price', step: "0.01", :required=> true %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="control-label">Description</label>
+            <%= pro.text_area :description  ,class: 'form-control',  placeholder: 'Description' %>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <br><br>
+          <%= pro.link_to_remove "<i class='fa fa-remove'></i> Remove".html_safe, class: "" %>
+        </div>
+
+      </div>
+  <%end%>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-12">
+      <%= f.link_to_add "<i class='fa fa-plus'></i> Add New".html_safe, :products, class: "btn sbold green", :data => { :target => "#product_div" } %>
+    </div>
+  </div>
+</div>
+

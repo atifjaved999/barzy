@@ -1,0 +1,144 @@
+{
+  "apiVersion": "2.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://barzy.herokuapp.com",
+  "resourcePath": "sessions",
+  "apis": [
+    {
+      "path": "/api/v1/users/login",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "email",
+              "type": "string",
+              "description": "Email",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "password",
+              "type": "string",
+              "description": "Password",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::Sessions#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/users/social_login",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": "Email",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[first_name]",
+              "type": "string",
+              "description": "First Name",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[last_name]",
+              "type": "string",
+              "description": "Last Name",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[social_id]",
+              "type": "string",
+              "description": "Social Id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[social_media]",
+              "type": "string",
+              "description": "Social Media",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            },
+            {
+              "code": 500,
+              "responseModel": null,
+              "message": "Requested Range Not Satisfiable"
+            }
+          ],
+          "nickname": "Api::V1::Sessions#social_login",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/users/logout",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": null,
+              "message": "Ok"
+            },
+            {
+              "code": 304,
+              "responseModel": null,
+              "message": "Not Modified"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Sessions#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

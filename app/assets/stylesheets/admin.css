@@ -1,0 +1,33 @@
+  /*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require admin/sbadmin/font-awesome
+ *= require admin/sbadmin/bootstrap.min
+ *= require admin/dataTables.bootstrap
+ *= require admin/dataTables.responsive
+ *= require admin/sbadmin/sb-admin-2
+ *= require admin/sbadmin/metisMenu.min
+ *= require admin/bootstrap-datepicker
+ *= require admin/select2
+ *= require admin/fancyBox/source/jquery.fancybox
+ *= require admin/fancyBox/source/helpers/jquery.fancybox-buttons
+ *= require admin/fancyBox/source/helpers/jquery.fancybox-thumbs
+ *= require admin/custom
+ *= require toastr
+ *= require jquery.timepicker.css
+ *= require admin/sbadmin/morris
+ *= require_self
+
+
+
+
+ */

@@ -1,0 +1,37 @@
+<h3>Business Info</h3>
+<hr>
+<div id="business_info_div" class="row">
+  <%=f.fields_for :business_infos do |business_info| %>
+
+      <div class="col-md-12">
+
+        <div class="col-md-5">
+          <div class="form-group">    
+            <label class="control-label">Name</label>
+            <%= business_info.text_field :name  ,class: 'form-control',  placeholder: 'Name' %>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label class="control-label">Value</label>
+            <%= business_info.text_field :value  ,class: 'form-control',  placeholder: 'Value' %>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <br><br>
+          <%= business_info.link_to_remove "<i class='fa fa-remove'></i> Remove".html_safe, class: "" %>
+        </div>
+      </div>
+  <%end%>
+</div>
+<div class="row">
+  <br />
+  <div class="col-md-12">
+    <div class="col-md-1">
+      <%= f.link_to_add "<i class='fa fa-plus'></i> Add New".html_safe, :business_infos, class: "btn sbold green", :data => { :target => "#business_info_div" } %>
+    </div>
+  </div>
+</div>
+<br /><br />
+

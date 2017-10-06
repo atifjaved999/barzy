@@ -1,0 +1,46 @@
+{
+  "apiVersion": "2.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://barzy.herokuapp.com",
+  "resourcePath": "need_helps",
+  "apis": [
+    {
+      "path": "/api/v1/need_helps",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "need_help[email]",
+              "type": "string",
+              "description": "Email",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "need_help[description]",
+              "type": "string",
+              "description": "Description",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            },
+            {
+              "code": 500,
+              "responseModel": null,
+              "message": "Requested Range Not Satisfiable"
+            }
+          ],
+          "nickname": "Api::V1::NeedHelps#create",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

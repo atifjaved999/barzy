@@ -1,0 +1,45 @@
+.adjust_bottom{
+  margin-top: -4px;
+}
+
+.adjust_top{
+  margin-top: 5px;
+}
+
+.adjust_top20{
+  margin-top: 23px;
+}
+
+.adjust_right{
+  margin-right: 5px;
+}
+
+.forgot-password-img{
+	width: 100%;
+	margin-top: 120px;
+}
+.home-img{
+	width: 100%;
+	margin-top: 100px;
+}
+.admin-link{
+	margin-top: 60px;
+	text-align: center;
+	font-size: 30px;
+}
+.admin-link-hover:hover {
+	color: #666;
+	background-color: transparent;
+	text-decoration: none;
+}
+.admin-link-hover{
+	font-size: 25px;
+}
+.adjust_top_new{
+	margin-top: 20px;
+	margin-left: -15px;
+}
+
+#error_explanation{
+  margin-left: 20px;
+}

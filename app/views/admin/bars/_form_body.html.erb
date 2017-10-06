@@ -1,0 +1,123 @@
+  <% if @admin_bar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_bar.errors.count, "error") %> prohibited this admin_bar from being saved:</h2>
+
+      <ul>
+      <% @admin_bar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="col-lg-12">
+  <div class="col-lg-6">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, :class=>"form-control", :required=>true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :contact_no %>
+        <%= f.text_field :contact_no, :class=>"form-control", :required=>true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :ratings %>
+        <%= f.text_field :ratings, :class=>"form-control", :required=>true %>
+      </div>
+      <% if current_user.is?('Super Admin') %>
+        <div class="form-group">
+          <%= f.label :'category(s)' %>
+          <%=f.collection_select :category_ids, Category.all, :id, :name, {}, {:multiple => true, :required=>true, class: "form-control", :id=>"categories_ids"}%>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :bar_photos %>
+        <%= f.file_field "attachments[bar_photos][file]", multiple: true, class: 'form-control', :required => f.object.bar_photos.blank? %>
+        <%= f.hidden_field "attachments[bar_photos][parent_id]", value: @admin_bar.id %>
+        <%= f.hidden_field "attachments[bar_photos][role]", value: "bar_photos" %>
+
+        <% @admin_bar.attachments.each do |attachment| %>
+          <a class="fancybox-thumb" rel="fancybox-thumb" href="<%= attachment.file.url %>" title="<%= attachment.file_name %>">
+            <% if attachment.file.present? %>
+            <%= image_tag(attachment.file.thumb, class: "adjust_top adjust_right") %>
+            <%else%>
+            <img src="/assets/default.gif" width="100px" height="100px" class="adjust_top adjust_right">
+            <%end%>
+            <%= link_to("", admin_attachment_path(attachment.token), class: "fa fa-trash fa-lg", method: :delete, data: { confirm: "Are you sure you wish to remove this attachment?" }) %>
+          </a>
+        <% end %>
+      </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, :class=>"form-control", :required=>true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :website %>
+      <%= f.text_field :website, :class=>"form-control", :required=>true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :price_range %>
+      <%= f.text_field :price_range, :class=>"form-control", :required=>true %>
+    </div>
+    <% if current_user.is?('Super Admin') %>
+      <div class="form-group">
+        <%= f.label :'bar_user(s)' %>
+        <%=f.collection_select :user_ids, User.admins, :id, :email, {}, {:multiple => true, :required=>true, class: "form-control", :id=>"users_ids"}%>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, :class=>"form-control", :required=>true,  :maxlength=>'200' %>
+    </div>
+  </div>
+</div>
+<div class="col-lg-12">
+  <%#= render "menu", f:f %>
+  <%= render "admin/bars/timing", f:f %>
+
+  <%= render "admin/bars/business_info", f:f %>
+</div>
+<div class="col-lg-12">
+  <div class="col-lg-6">
+    <% if current_user.is?('Super Admin') %>
+      <%= link_to 'Back', admin_bars_path, :class=> "btn btn-default" %>
+    <% else %>
+      <%= link_to 'Back', admin_bar_path(@admin_bar), :class=> "btn btn-default" %>
+    <% end %>
+    <button type="reset" class="btn btn-primary ">Reset</button>
+    <button type="submit" class="btn btn-success ">Submit</button>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#users_ids,  #categories_ids').select2();
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".fancybox-thumb").fancybox({
+      prevEffect  : 'elastic',
+      nextEffect  : 'elastic',
+      padding    : 0,
+      helpers : {
+        title : {
+          type: 'outside'
+        },
+        thumbs  : {
+          width : 50,
+          height  : 50
+        },
+        overlay : {
+            css : {
+                'background' : 'rgba(58, 42, 45, 0.95)'
+            }
+        }
+      }
+    });
+  });
+</script>
+

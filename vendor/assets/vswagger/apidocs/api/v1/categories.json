@@ -1,0 +1,93 @@
+{
+  "apiVersion": "2.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://barzy.herokuapp.com",
+  "resourcePath": "categories",
+  "apis": [
+    {
+      "path": "/api/v1/categories",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "The request you made is not acceptable"
+            },
+            {
+              "code": 500,
+              "responseModel": null,
+              "message": "Requested Range Not Satisfiable"
+            }
+          ],
+          "summary": "Returns All Categories",
+          "nickname": "Api::V1::Categories#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/categories/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Category Id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "category",
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "The request you made is not acceptable"
+            }
+          ],
+          "summary": "Fetches a single Category",
+          "nickname": "Api::V1::Categories#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

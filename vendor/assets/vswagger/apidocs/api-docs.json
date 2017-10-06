@@ -1,0 +1,28 @@
+{
+  "apiVersion": "2.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://barzy.herokuapp.com",
+  "apis": [
+    {
+      "path": "/assets/apidocs/api/v1/sessions.{format}",
+      "description": "Sessions"
+    },
+    {
+      "path": "/assets/apidocs/api/v1/users.{format}",
+      "description": "Users"
+    },
+    {
+      "path": "/assets/apidocs/api/v1/bars.{format}",
+      "description": "bars"
+    },
+    {
+      "path": "/assets/apidocs/api/v1/categories.{format}",
+      "description": "categories"
+    },
+    {
+      "path": "/assets/apidocs/api/v1/need_helps.{format}",
+      "description": "NeedHelp"
+    }
+  ],
+  "authorizations": null
+}

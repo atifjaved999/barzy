@@ -1,0 +1,11 @@
+<h3>Menu</h3>
+<hr>
+<%=f.fields_for :menu do |m| %>
+  <div class="col-md-12">
+    <div class="form-group">
+      <label class="control-label">Description</label>
+      <%= m.text_area :description  ,class: 'form-control',  placeholder: 'Description' %>
+    </div>
+  </div>
+  <br>
+<% end %>

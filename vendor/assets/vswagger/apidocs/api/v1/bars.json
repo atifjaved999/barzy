@@ -1,0 +1,251 @@
+{
+  "apiVersion": "2.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://barzy.herokuapp.com",
+  "resourcePath": "bars",
+  "apis": [
+    {
+      "path": "/api/v1/categories/{category_id}/bars",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "string",
+              "description": "Page No",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "category_id",
+              "type": "string",
+              "description": "Category Id",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "The request you made is not acceptable"
+            },
+            {
+              "code": 500,
+              "responseModel": null,
+              "message": "Requested Range Not Satisfiable"
+            }
+          ],
+          "summary": "Returns All bars",
+          "nickname": "Api::V1::Bars#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/categories/{category_id}/bars/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "bar Id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "bar",
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "The request you made is not acceptable"
+            }
+          ],
+          "summary": "Fetches a single bar",
+          "nickname": "Api::V1::Bars#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/bars/search",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "bar_name",
+              "type": "string",
+              "description": "Bar Name",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "bar",
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "The request you made is not acceptable"
+            }
+          ],
+          "summary": "Fetches a Searched Bars",
+          "nickname": "Api::V1::Bars#search",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/bars/{id}/add_favourite",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "bar Id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "bar",
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "The request you made is not acceptable"
+            }
+          ],
+          "summary": "Add Favourite Bar",
+          "nickname": "Api::V1::Bars#add_favourite",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/bars/{id}/remove_favourite",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "Authorization",
+              "type": "string",
+              "description": "API Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "bar Id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 200,
+              "responseModel": "bar",
+              "message": "Success"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "The request you made is not acceptable"
+            }
+          ],
+          "summary": "Remove Favourite Bar",
+          "nickname": "Api::V1::Bars#remove_favourite",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

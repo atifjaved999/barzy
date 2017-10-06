@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header"><%= @admin_bar.name %></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+      Bar
+      <% if current_user.is?('Admin') %>
+        <div class="pull-right">
+          <%#= link_to 'Edit', edit_admin_bar_path(@admin_bar), :class=> "btn btn-primary btn-sm adjust_bottom" %>
+        </div>
+      <% end %>
+    </div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <td colspan="3"><%= @admin_bar.name %></td>
+              </tr>
+              <tr>
+                <th>Description</th>
+                <td colspan="3"><%= @admin_bar.description %></td>
+              </tr>
+              <tr>
+                <th>Categories:</th>
+                <td>
+                <% @admin_bar.categories.each do |category| %>
+                  <label class="label label-info">&nbsp;<%= category.name %>&nbsp;</label>
+                <% end %>
+                </td>
+              </tr>
+              <tr>
+                <th>Address</th>
+                <td colspan="3"><%= @admin_bar.address %></td>
+              </tr>
+              <tr>
+                <th>Zip Code</th>
+                <td colspan="3"><%= @admin_bar.zip_code %></td>
+              </tr>
+              <tr>
+                <th>Latitude</th>
+                <td colspan="3"><%= @admin_bar.lat %></td>
+              </tr>
+              <tr>
+                <th>Longitude</th>
+                <td colspan="3"><%= @admin_bar.lng %></td>
+              </tr>
+              <tr>
+                <th>Contact No</th>
+                <td colspan="3"><%= @admin_bar.contact_no %></td>
+              </tr>
+              <tr>
+                <th>Website</th>
+                <td colspan="3"><%= @admin_bar.website %></td>
+              </tr>
+              <tr>
+                <th>Ratings</th>
+                <td colspan="3"><%= @admin_bar.ratings %></td>
+              </tr>
+              <tr>
+                <th>Price Range</th>
+                <td colspan="3"><%= @admin_bar.price_range %></td>
+              </tr>
+
+              <tr>
+                <th>Menu</th>
+                <td>
+                <% if @admin_bar.menu.product_categories.present? %>
+                  <%= link_to 'Full Menu <i class="fa fa-check" aria-hidden="true"></i>'.html_safe, admin_bar_menu_path(@admin_bar, @admin_bar.menu), :class=> "btn btn-success" %>
+                <% else %>
+                  <%= link_to 'Full Menu', admin_bar_menu_path(@admin_bar, @admin_bar.menu), :class=> "btn btn-success" %>
+                <% end %>
+                <br><br>
+                <%= @admin_bar.menu.description rescue '' %></td>
+              </tr>
+              <tr><td colspan="4"><h4>Timings</h4></td></tr>
+              <% @admin_bar.timings.each do |timing| %>
+                <tr>
+                  <td><strong><%= timing.day %></strong></td>
+                  <td><%= format_time(timing.opening_time) rescue '' %></td>
+                  <td><%= format_time(timing.closing_time) rescue '' %></td>
+                </tr>
+              <% end %>
+              <tr><td colspan="3"><br></td></tr>
+              <tr><td colspan="4"><h4>Business Info</h4></td></tr>
+              <% @admin_bar.business_infos.each do |business_info| %>
+                <tr>
+                  <td><strong><%= business_info.name %></strong></td>
+                  <td colspan=""><%= business_info.value %></td>
+                </tr>
+              <% end %>
+              <tr><td colspan="2"><br></td></tr>
+              <tr>
+                <th>Bar Photo(s)</th>
+                <td colspan="3">
+                  <% @admin_bar.attachments.each do |attachment| %>
+                    <a class="fancybox-thumb" rel="fancybox-thumb" href="<%= attachment.file.url %>" title="<%= attachment.file_name %>">
+                      <% if attachment.file.present? %>
+                      <%= image_tag(attachment.file.thumb, class: "adjust_top adjust_right") %>
+                      <%else%>
+                      <img src="/assets/default.gif" width="100px" height="100px" class="adjust_top adjust_right">
+                      <%end%>
+                    </a>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <% if current_user.is?('Super Admin') %>
+                    <%= link_to 'Back', admin_bars_path, :class=> "btn btn-default" %>
+                  <% else %>
+                    <%= link_to 'Back', admin_bar_path(@admin_bar), :class=> "btn btn-default" %>
+                  <% end %>
+                    <%= link_to 'Edit', edit_admin_bar_path(@admin_bar), :class=> "btn btn-primary" %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".fancybox-thumb").fancybox({
+      prevEffect  : 'elastic',
+      nextEffect  : 'elastic',
+      padding    : 0,
+      helpers : {
+        title : {
+          type: 'outside'
+        },
+        thumbs  : {
+          width : 50,
+          height  : 50
+        },
+        overlay : {
+            css : {
+                'background' : 'rgba(58, 42, 45, 0.95)'
+            }
+        }
+      }
+    });
+  });
+</script>
+

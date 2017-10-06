@@ -1,0 +1,42 @@
+  <% if @admin_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@admin_category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @admin_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="col-lg-6">
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class=>"form-control", :required=>true %>
+    </div>
+</div>
+<div class="col-lg-6">
+<!--   <div class="form-group">
+    <%#= f.label :description %>
+    <%#= f.text_area :description, :class=>"form-control" %>
+  </div> -->
+  <div class="form-group">
+    <%= f.label :image %><br>
+
+    <%= f.file_field "attachment[photo][file]", :class=>"form-control", :required => f.object.attachment.blank?  %>
+
+    <%= f.hidden_field "attachment[photo][parent_id]", value: @admin_category.id %>
+    <%= f.hidden_field "attachment[photo][role]", value: "photo" %>
+  </div>
+  <% if @admin_category.photo.present? %>
+        <img src="<%= @admin_category.medium %>">
+        <%else%>
+        <img src="/assets/default.gif" width="250px" height="170px">
+   <%end%>
+</div>
+
+<div class="col-lg-6">
+  <%= link_to 'Back', admin_categories_path, :class=> "btn btn-default " %>
+  <button type="reset" class="btn btn-primary ">Reset</button>
+  <button type="submit" class="btn btn-success ">Submit</button>
+</div>

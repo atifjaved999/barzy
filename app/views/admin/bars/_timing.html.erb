@@ -1,0 +1,46 @@
+<h3>Bar Timings</h3>
+<hr>
+<div id="timing_div" class="row">
+  <%=f.fields_for :timings do |t| %>
+
+      <div class="col-md-12">
+
+        <div class="col-md-3">
+          <div class="form-group">    
+            <label class="control-label">Day</label>
+            <%= t.text_field :day  ,class: 'form-control',  placeholder: 'Monday', readonly: true  %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label">Opening Time</label>
+            <%= t.text_field :opening_time  ,class: 'form-control timeFormat',  placeholder: '9:00 AM', value: t.object.opening_time ? format_time(t.object.opening_time)  : '' %>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="control-label">Closing Time</label>
+            <%= t.text_field :closing_time  ,class: 'form-control timeFormat',  placeholder: '9:00 PM', value: t.object.closing_time ? format_time(t.object.closing_time) : '' %>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <br><br>
+          <%#= t.link_to_remove "<i class='fa fa-remove'></i> Remove".html_safe, class: "" %>
+        </div>
+        <script type="text/javascript">
+            $('.timeFormat').timepicker({ 'timeFormat': 'h:i A' });
+        </script>
+      </div>
+  <%end%>
+</div>
+<div class="row">
+  <br />
+  <div class="col-md-12">
+    <div class="col-md-1">
+      <%#= f.link_to_add "<i class='fa fa-plus'></i> Add New".html_safe, :timings, class: "btn sbold green", :data => { :target => "#timing_div" } %>
+    </div>
+  </div>
+</div>
+<br /><br />
+

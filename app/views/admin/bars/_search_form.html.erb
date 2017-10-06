@@ -1,0 +1,49 @@
+<div class="row">
+  <%= search_form_for @q, url: admin_bars_path do |f| %>
+
+  <div class="col-md-2" >
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.search_field :name_cont, class: "form-control input-sm" %>
+    </div>
+  </div>
+  <div class="col-md-2" >
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.search_field :address_cont, class: "form-control input-sm" %>
+    </div>
+  </div>
+  <div class="col-md-2" >
+    <div class="form-group">
+      <%= f.label :zip_code %>
+      <%= f.search_field :zip_code_cont, class: "form-control input-sm" %>
+    </div>
+  </div>
+  <div class="col-md-2" >
+    <div class="form-group">
+      <%= f.label :contact_no %>
+      <%= f.search_field :contact_no_cont, class: "form-control input-sm" %>
+    </div>
+  </div>
+  <div class="col-md-2" >
+    <div class="form-group">
+      <%= f.label :website %>
+      <%= f.search_field :website_cont, class: "form-control input-sm" %>
+    </div>
+  </div>
+  <div class="col-md-2" >
+    <div class="form-group pull-right" style="margin-top:23px">
+    <%= link_to "Clear", request.path, :class => "btn btn-danger btn-sm" %>
+      <%= f.submit 'Search', :class => "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
